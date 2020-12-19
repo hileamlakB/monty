@@ -54,4 +54,21 @@ void *srealloc(void *, unsigned int);
 /*Interpreter funnction*/
 void (*get_op_func(char *))(stack_t **, unsigned int)
 
+/*Interpreter helpers*/
+void push(stack_t **head, unsigned int line_number);
+void pall(stack_t **head, unsigned int line_number);
+void pint(stack_t **head, unsigned int line_number);
+void pop(stack_t **head, unsigned int line_number);
+void swap(stack_t **head, unsigned int line_number);
+void add(stack_t **head, unsigned int line_number);
+void nop(stack_t **head, unsigned int line_number);
+void sub(stack_t **head, unsigned int line_number);
+void div(stack_t **head, unsigned int line_number);
+void mul(stack_t **head, unsigned int line_number);
+void mod(stack_t **head, unsigned int line_number);
+void comment(stack_t **head, unsigned int line_number);
+void pchar(stack_t **head, unsigned int line_number);
+void pstr(stack_t **head, unsigned int line_number);
+void rotl(stack_t **head, unsigned int line_number);
+void rotr(stack_t **head, unsigned int line_number);
 #endif /*MONTY*/
