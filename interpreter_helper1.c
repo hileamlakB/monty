@@ -54,6 +54,16 @@ void push(stack_t **head, unsigned int line_number, code_args_t token)
  */
 void pall(stack_t **head, unsigned int line_number, code_args_t token)
 {
+	stack_t *new = *head;
+
+	(void)line_number;
+	(void)token;
+
+	while (new)
+	{
+		printf("%d\n", new->n);
+		new = new->next;
+	}
 }
 
 
@@ -65,6 +75,14 @@ void pall(stack_t **head, unsigned int line_number, code_args_t token)
  */
 void pint(stack_t **head, unsigned int line_number, code_args_t token)
 {
+	(void)token;
+
+	if (*head == NULL)
+	{
+		dprintf(2, "L%u: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*head)->n);
 }
 
 
@@ -76,6 +94,17 @@ void pint(stack_t **head, unsigned int line_number, code_args_t token)
  */
 void pop(stack_t **head, unsigned int line_number, code_args_t token)
 {
+	stack_t *temp = NULL;
+	(void)token;
+
+	if (*head == NULL)
+	{
+		dprintf(2, "L%u: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	temp = *head;
+	*head = (*head)->next;
+	free(temp);
 }
 
 
@@ -87,4 +116,15 @@ void pop(stack_t **head, unsigned int line_number, code_args_t token)
  */
 void swap(stack_t **head, unsigned int line_number, code_args_t token)
 {
+	int temp;
+	(void)token;
+
+	if (*head == NULL || !(*head)->next)
+	{
+		dprintf(2, "L%u: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	temp = (*head)->n;
+	(*head)->n = (*head)->next->n;
+	(*head)->next->n = temp;
 }
