@@ -11,7 +11,7 @@ char **sarrdup(char **src)
 	char **_tmp = tmp;
 
 	while (*src)
-		*_tmp = _strdup(*src), _tmp++, src++;
+		*_tmp = strdup(*src), _tmp++, src++;
 	*_tmp = NULL;
 	return (tmp);
 

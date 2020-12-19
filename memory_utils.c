@@ -53,10 +53,10 @@ void trims(char **str, char *strt)
 			count++, _str++;
 		else if (*_str != ' ')
 		{
-			tmp = smalloc(sizeof(char) * (_strlen(new) + 3));
+			tmp = smalloc(sizeof(char) * (strlen(new) + 3));
 			if (!tmp)
 				exit(-1);
-			_strcpy(tmp, new);
+			strcpy(tmp, new);
 			if (count > 1)
 				tmp[index] = ' ', index++;
 
@@ -81,7 +81,7 @@ void *smalloc(unsigned int size)
 
 	if (!pointer)
 	{
-		fprintf(2, "Error: malloc failed");
+		dprintf(2, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	while (i < size)
