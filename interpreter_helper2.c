@@ -170,6 +170,12 @@ void mult(stack_t **head, unsigned int line_number, code_args_t token)
 		dprintf(2, "L%u: can't mul, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	if (!(_head->next))
+	{
+
+		dprintf(2, "L%u: can't mult, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
 	/*find the difference of the ints in the nodes and store it in the top node*/
 	_head->next->n *= _head->n;

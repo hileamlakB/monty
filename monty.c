@@ -43,7 +43,6 @@ int main(int argc, char **argv)
 		}
 		interpret(line, line_number, &head);
 		line_number += 1;
-		printf("%s\n",line);
 	}
 
 	if (line)

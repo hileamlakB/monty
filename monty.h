@@ -13,7 +13,7 @@
 #include <fcntl.h>
 
 /*global variables*/
-extern char *data_mod;
+char *data_mod;
 
 
 /**
@@ -90,6 +90,8 @@ void pchar(stack_t **, unsigned int, code_args_t);
 void pstr(stack_t **, unsigned int, code_args_t);
 void rotl(stack_t **, unsigned int, code_args_t);
 void rotr(stack_t **, unsigned int, code_args_t);
+void queue(stack_t **, unsigned int, code_args_t);
+void stack(stack_t **, unsigned int, code_args_t);
 
 /*error_utils*/
 void perr_line(char *, int, char *);
