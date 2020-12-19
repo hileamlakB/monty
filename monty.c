@@ -9,11 +9,11 @@
  */
 int main(int argc, char **argv)
 {
+	FILE *fd = NULL;
 	int read_stat = -1;
 	char *line = NULL;
 	size_t line_alloc = 0;
 	int reading = 1;
-	FILE *fp = NULL;
 
 	/*check if there is correct argument number*/
 	if (argc != 2)
@@ -23,14 +23,14 @@ int main(int argc, char **argv)
 	}
 
 	/*safely open the file*/
-	fp = sopen(argv[1]);
+	fd = sopen(argv[1]);
 
 	/*Read one line at a time*/
 	/*Check if it is correct*/
 	/*Execute that line*/
 	while (reading)
 	{
-		read_stat = getline(&line, &line_alloc, fp);
+		read_stat = getline(&line, &line_alloc, fd);
 		if (read_stat == -1)
 		{
 			reading = 0;
@@ -40,6 +40,6 @@ int main(int argc, char **argv)
 	}
 
 	/*Close the file before exiting*/
-	fclose(fp);
+	fclose(fd);
 	exit(EXIT_SUCCESS);
 }
