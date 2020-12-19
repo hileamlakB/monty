@@ -6,14 +6,14 @@
  * @name: name of the file
  * Return: the file descriptor and -1 on faliure
  */
-int sopen(char *name)
+FILE *sopen(char *name)
 {
 	char *path = NULL, *currentdir = NULL;
-	int fd;
+	FILE *fd;
 	char *errmsg = NULL;
 
 	if (!name || strlen(name) <= 0)
-		return (-1);
+		return (NULL);
 
 	if (name[0] != '.' && name[0] != '~' && name[0] != '/')
 	{
@@ -26,8 +26,8 @@ int sopen(char *name)
 	else
 		path = strdup(name);
 
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
+	fd = fopen(path, "r");
+	if (!fd)
 	{
 		errmsg = smalloc(strlen("Error: Can't open file ") + strlen(name) + 4);
 		strcpy(errmsg, "Error: Can't open file ");

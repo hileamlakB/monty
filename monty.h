@@ -43,7 +43,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /*loader*/
-int sopen(char *);
+FILE *sopen(char *);
 
 /*memory_utils*/
 void freedp(char **);
