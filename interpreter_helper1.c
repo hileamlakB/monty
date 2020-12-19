@@ -22,7 +22,7 @@ void push(stack_t **head, unsigned int line_number, code_args_t token)
 	new_node->n = token.args;
 
 	/*if the data mode is stack store the data in front*/
-	if (!strcmp(data_mode, "stack"))
+	if (!strcmp(data_mod, "stack"))
 	{
 		new_node->prev = NULL;
 		new_node->next = _head;

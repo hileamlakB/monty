@@ -25,7 +25,7 @@ void rotr(stack_t **head, unsigned int line_number, code_args_t token)
 
 	/*set the head next to it and the prev empty*/
 	bottom->next = *head;
-	bototm->prev = NULL;
+	bottom->prev = NULL;
 
 	/*Set the bottom to now be the head*/
 	*head = bottom;
