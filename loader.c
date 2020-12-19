@@ -42,4 +42,3 @@ FILE *sopen(char *name)
 
 	return (fd);
 }
-

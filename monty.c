@@ -10,9 +10,9 @@
 int main(int argc, char **argv)
 {
 	FILE *fd = NULL;
-	int read_stat = -1;
+	ssize_t read_stat = -1;
 	char *line = NULL;
-	size_t line_alloc = 0;
+	size_t buffsize = 0;
 	int reading = 1;
 
 	/*check if there is correct argument number*/
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 	/*Execute that line*/
 	while (reading)
 	{
-		read_stat = getline(&line, &line_alloc, fd);
+		read_stat = getline(&line, &buffsize, fd);
 		if (read_stat == -1)
 		{
 			reading = 0;
@@ -40,6 +40,7 @@ int main(int argc, char **argv)
 	        printf("%s\n",line);
 	}
 
+        free(line);
 	/*Close the file before exiting*/
 	fclose(fd);
 	exit(EXIT_SUCCESS);
