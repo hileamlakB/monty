@@ -13,7 +13,9 @@ int main(int argc, char **argv)
 	ssize_t read_stat = -1;
 	char *line = NULL;
 	size_t buffsize = 0;
-	int reading = 1;
+	int reading = 1, line_numer = 1;
+	stack_s *head = NULL;
+
 
 	/*check if there is correct argument number*/
 	if (argc != 2)
@@ -36,7 +38,7 @@ int main(int argc, char **argv)
 			reading = 0;
 			break;
 		}
-		interpret(line);
+		interpret(&head, line, line_number);
 	        printf("%s\n",line);
 	}
 

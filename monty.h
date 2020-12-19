@@ -69,20 +69,25 @@ void (*get_op_func(char *))(stack_t **, unsigned int);
 void interpret(char *, int, stack_t **);
 
 /*Interpreter helpers*/
-void push(stack_t **head, unsigned int line_number);
-void pall(stack_t **head, unsigned int line_number);
-void pint(stack_t **head, unsigned int line_number);
-void pop(stack_t **head, unsigned int line_number);
-void swap(stack_t **head, unsigned int line_number);
-void add(stack_t **head, unsigned int line_number);
-void nop(stack_t **head, unsigned int line_number);
-void sub(stack_t **head, unsigned int line_number);
-void div(stack_t **head, unsigned int line_number);
-void mul(stack_t **head, unsigned int line_number);
-void mod(stack_t **head, unsigned int line_number);
-void comment(stack_t **head, unsigned int line_number);
-void pchar(stack_t **head, unsigned int line_number);
-void pstr(stack_t **head, unsigned int line_number);
-void rotl(stack_t **head, unsigned int line_number);
-void rotr(stack_t **head, unsigned int line_number);
+void push(stack_t **, unsigned int);
+void pall(stack_t **, unsigned int);
+void pint(stack_t **, unsigned int);
+void pop(stack_t **, unsigned int);
+void swap(stack_t **, unsigned int);
+void add(stack_t **, unsigned int);
+void nop(stack_t **, unsigned int);
+void sub(stack_t **, unsigned int);
+void div(stack_t **, unsigned int);
+void mul(stack_t **, unsigned int);
+void mod(stack_t **, unsigned int);
+void comment(stack_t **, unsigned int);
+void pchar(stack_t **, unsigned int);
+void pstr(stack_t **, unsigned int);
+void rotl(stack_t **, unsigned int);
+void rotr(stack_t **, unsigned int);
+
+/*error_utils*/
+void perr_line(char *, int, char *);
+void perr(char *, char *);
+
 #endif /*MONTY*/
