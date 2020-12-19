@@ -10,12 +10,7 @@ void add(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *tmp = NULL;
 
-	/*check if the no extra argument is passed*/
-	if (token.argc != 0)
-	{
-		dprintf(2, "L%u: usage: add\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+	(void)(token);
 
 	/*check if there are nodes to be added*/
 	if (!_head)
@@ -65,12 +60,8 @@ void sub(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *tmp = NULL;
 
-	/*check if the no extra argument is passed*/
-	if (token.argc != 0)
-	{
-		dprintf(2, "L%u: usage: sub\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+
+	(void)(token);
 
 	/*check if there are nodes to be substracted*/
 	if (!_head)
@@ -107,12 +98,8 @@ void div_m(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *tmp = NULL;
 
-	/*check if the no extra argument is passed*/
-	if (token.argc != 0)
-	{
-		dprintf(2, "L%u: usage: div\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+
+	(void)(token);
 
 	/*check if there are nodes to be divided*/
 	if (!_head)
@@ -157,12 +144,8 @@ void mult(stack_t **head, unsigned int line_number, code_args_t token)
 
 	stack_t *_head = *head, *tmp = NULL;
 
-	/*check if the no extra argument is passed*/
-	if (token.argc != 0)
-	{
-		dprintf(2, "L%u: usage: mul\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+
+	(void)(token);
 
 	/*check if there are nodes to be multiplied*/
 	if (!_head)

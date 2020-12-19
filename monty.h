@@ -13,7 +13,7 @@
 #include <fcntl.h>
 
 /*global variables*/
-char *data_mod;
+char data_mod[6];
 
 
 /**
@@ -68,7 +68,10 @@ int arlen(char **);
 void trims(char **, char *);
 void *smalloc(unsigned int);
 void *srealloc(void *, unsigned int);
+
+/*memory_utils2*/
 char *_strdup(char *);
+void freedll(stack_t *);
 
 /*Interpreter funnction*/
 void (*get_op_func(char *))(stack_t **, unsigned int, code_args_t);
@@ -93,8 +96,5 @@ void rotr(stack_t **, unsigned int, code_args_t);
 void queue(stack_t **, unsigned int, code_args_t);
 void stack(stack_t **, unsigned int, code_args_t);
 
-/*error_utils*/
-void perr_line(char *, int, char *);
-void perr(char *, char *);
 
 #endif /*MONTY*/

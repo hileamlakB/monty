@@ -25,7 +25,7 @@ FILE *sopen(char *name)
 	else
 		path = _strdup(name);
 
-	fr = fopen(path, "r");
+	fd = fopen(path, "r");
 	if (!fd)
 	{
 		dprintf(2, "Error: Can't open file %s\n", name);

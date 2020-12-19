@@ -35,10 +35,10 @@ int arlen(char **a)
 	return (i);
 }
 /**
-*trims - trims space in front of a string and more than one spaces in between
-*@str: pointer to the string to be edited
-*@strt: string to be trimed
-*/
+ *trims - trims space in front of a string and more than one spaces in between
+ *@str: pointer to the string to be edited
+ *@strt: string to be trimed
+ */
 void trims(char **str, char *strt)
 {
 	char *new = smalloc(sizeof(char) * 1), *_str = strt, *tmp;
@@ -47,11 +47,11 @@ void trims(char **str, char *strt)
 	*new = '\0';
 	while (*_str)
 	{
-		if (*_str == ' ' && first)
+		if ((*_str == ' ' || *_str == '\t') && first)
 			_str++;
-		else if (*_str == ' ' && count)
+		else if ((*_str == ' ' || *_str == '\t') && count)
 			count++, _str++;
-		else if (*_str != ' ')
+		else if (*_str != ' ' && *_str != '\t')
 		{
 			tmp = smalloc(sizeof(char) * (strlen(new) + 3));
 			if (!tmp)

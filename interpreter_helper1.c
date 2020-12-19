@@ -9,7 +9,7 @@
 void push(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *new_node, *_head = *head;
-	extern char *data_mod;
+	extern char data_mod[6];
 
 	if (token.argc != 1)
 	{
@@ -28,10 +28,15 @@ void push(stack_t **head, unsigned int line_number, code_args_t token)
 		new_node->next = _head;
 		if (_head)
 			_head->prev = new_node;
-		_head = new_node;
+		*head = new_node;
 	}
 	else if (!strcmp(data_mod, "queue"))
 	{
+		if (!_head)
+		{
+			*head = new_node;
+			return;
+			}
 		/*go to the end of the file*/
 		while (_head->next)
 			_head = _head->next;

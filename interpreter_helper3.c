@@ -10,12 +10,8 @@ void mod(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *tmp = NULL;
 
-	/*check if the no extra argument is passed*/
-	if (token.argc != 0)
-	{
-		dprintf(2, "L%u: usage: mod\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+
+	(void)(token);
 
 	/*check if there are nodes to be divided*/
 	if (!_head)
@@ -61,12 +57,7 @@ void pchar(stack_t **head, unsigned int line_number, code_args_t token)
 
 	stack_t *_head = *head;
 
-	/*Handle incase uncessary arguments are passed*/
-	if (token.argc != 0)
-	{
-		dprintf(2, "L%u: usage: pchar\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+	(void)(token);
 
 	/*Incase there is no node to be printed*/
 	if (!_head)
@@ -98,13 +89,7 @@ void pstr(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head;
 
-
-	/*Handle incase uncessary arguments are passed*/
-	if (token.argc != 0)
-	{
-		dprintf(2, "L%u: usage: pstr\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+	(void)(token);
 	/*
 	*print everything in the linked list unless
 	* it's value is a zero,
@@ -132,6 +117,9 @@ void pstr(stack_t **head, unsigned int line_number, code_args_t token)
 void rotl(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *top = *head, *second = NULL;
+
+	(void)(token);
+	(void)(line_number);
 
 	if(!_head)
 		return;

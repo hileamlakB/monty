@@ -39,3 +39,19 @@ char *_strdup(char *str)
 	return (copy);
 }
 
+/**
+ *freedll - frees a doubly linked list
+ *@head: a pointer to the head of the doubly linked list
+ */
+void freedll(stack_t *head)
+{
+	stack_t *tmp = NULL;
+
+	while (head)
+	{
+		tmp = head->next;
+		free(head);
+		head = tmp;
+	}
+}
+

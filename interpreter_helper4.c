@@ -10,6 +10,9 @@ void rotr(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *bottom = NULL;
 
+
+	(void)(token);
+	(void)(line_number);
 	if(!_head)
 		return;
 
@@ -40,9 +43,9 @@ void rotr(stack_t **head, unsigned int line_number, code_args_t token)
  */
 void queue(stack_t **head, unsigned int line_number, code_args_t token)
 {
-	extern char *data_mod;
+	extern char data_mod[6];
 
-	data_mod = "queue";
+	strcpy(data_mod, "queue");
 	(void)head;
 	(void)line_number;
 	(void)token;
@@ -57,9 +60,9 @@ void queue(stack_t **head, unsigned int line_number, code_args_t token)
  */
 void stack(stack_t **head, unsigned int line_number, code_args_t token)
 {
-	extern char *data_mod;
+	extern char data_mod[6];
 
-	data_mod = "stack";
+	strcpy(data_mod, "stack");
 	(void)head;
 	(void)line_number;
 	(void)token;
