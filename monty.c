@@ -14,12 +14,14 @@ int main(int argc, char **argv)
 	char *line = NULL;
 	size_t line_alloc = 0;
 	int reading = 1;
+
 	/*check if there is correct argument number*/
 	if (argc != 2)
 	{
 		dprintf(2, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
+
 	/*safely open the file*/
 	fd = sopen(argv[1]);
 
@@ -36,6 +38,7 @@ int main(int argc, char **argv)
 		}
         printf("%s\n",line);
 	}
+
 	/*Close the file before exiting*/
 	close(fd);
 	exit(EXIT_SUCCESS);

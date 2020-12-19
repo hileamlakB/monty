@@ -1,6 +1,17 @@
 #ifndef MONTY
 #define MONTY
 
+/*Liberaries*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -31,13 +42,13 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/*loader*/
+int sopen(char *);
 
-typedef struct command_s
-{
-	char *cmd;
-	int args[2];
-	struct command_s *next;
-
-}command_t;
-
+/*memory_utils*/
+void freedp(char **);
+int arlen(char **);
+void trims(char **, char *);
+void *smalloc(unsigned int);
+void *srealloc(void *, unsigned int);
 #endif /*MONTY*/
