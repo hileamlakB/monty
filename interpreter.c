@@ -7,7 +7,7 @@
  * @s: input string
  * Return: pointer to a function
  */
-void (*get_op_func(char *command))(stack_t **, unsigned int)
+void (*get_op_func(char *command))(stack_t **, unsigned int, code_args_t)
 {
 	instruction_s ops[] = {
 		{"push", push},
@@ -47,21 +47,35 @@ void (*get_op_func(char *command))(stack_t **, unsigned int)
  */
 void interpret(char *line, int line_number, stack_t **head)
 {
-	char *cmd = trims(line), *tmp = NULL, *errmsg = NULL;
-	void (*func)(stack_t **, unsigned int) = NULL;
+	char *cmd = trims(line), *tmp = NULL, *errmsg = NULL, *opcode = NULL;
+	void (*func)(stack_t **, unsigned int, code_args_t) = NULL;
+	char *num = NULL;
+	code_args_t token;
+
+	token.argc = 0;
 
 	/*Parse the command name and the arguments into the token*/
 	tmp = strtok(cmd, " ");
+	opcode = tmp;
+	tmp = strtok(NULL, " ");
+	if (tmp)
+	{
+		/*handle the case where tmp isn't a number*/
+		token.args = atoi(tmp);
+		token.argc += 1;
+		tmp = strtok(NULL, " ");
+		if (tmp)
+			token.argc += 1
+	}
 
 	/*Get the corrspondng fuction to the opcode and callit*/
-	func = get_op_func(tmp);
+	func = get_op_func(opcode);
 	if (func)
-		func(head, line_number);
+		func(head, line_number, token);
 	else
 	{
 		/*hande the case if no commad is found for the opcode*/
-		num = itoa(line_number);
-		errmsg = smalloc(strlen("L: unknown instruction ") + strlen(num) + strlen(token.cmd) + 4);
+		errmsg = smalloc(strlen("L: unknown instruction ") + strlen(num) + strlen(opcode) + 4);
 		strcpy(errmsg, "L");
 		strcat(errmsg, num);
 		strcat(errmsg, ": unknown instruction ");

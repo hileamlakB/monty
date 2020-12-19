@@ -19,7 +19,6 @@
  * @next: points to the next element of the stack (or queue)
  *
  * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct stack_s
 {
@@ -42,17 +41,18 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
-* struct code_token_s - a command and its argument
-* @cmd: command string
+* struct code_args_s -  argument information
 * @args: a list of the aguments
-* @argc: number of arguments to excpect
+* @argc: number of arguments to passed
+* 0 - means none,
+* 1 - means 1,
+* 2 - more than one
 */
-typedef struct code_token_s
+typedef struct code_args_s
 {
-	char *cmd;
-	int args;
+	int args[2];
 	int argc;
-}code_token_t
+}code_args_t
 
 /*loader*/
 FILE *sopen(char *);
@@ -66,6 +66,6 @@ void *srealloc(void *, unsigned int);
 
 /*Interpreter funnction*/
 void (*get_op_func(char *))(stack_t **, unsigned int);
-void interpret(char *line);
+void interpret(char *, int, stack_t **);
 
 #endif /*MONTY*/
