@@ -36,22 +36,22 @@ void sub(stack_t **head, unsigned int line_number, code_args_t token)
 
 
 /**
- * div - divides second top element by the top element.
+ * div_m - divides second top element by the top element.
  * @head: double pointer to top element of the stack
  * @line_number: current line we are at in the file
  * @token: the number of arguments and the arguments themself
  */
-void div(stack_t **head, unsigned int line_number, code_args_t token)
+void div_m(stack_t **head, unsigned int line_number, code_args_t token)
 {
 }
 
 
 /**
- * mul - multiplies top two elements of the stack
+ * mult - multiplies top two elements of the stack
  * @head: double pointer to top element of the stack
  * @line_number: current line we are at in the file
  * @token: the number of arguments and the arguments themself
  */
-void mul(stack_t **head, unsigned int line_number, code_args_t token)
+void mult(stack_t **head, unsigned int line_number, code_args_t token)
 {
 }

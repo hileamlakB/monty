@@ -28,19 +28,6 @@ typedef struct stack_s
 } stack_t;
 
 /**
- * struct instruction_s - opcode and its function
- * @opcode: the opcode
- * @f: function to handle the opcode
- *
- * Description: opcode and its respctive function
- */
-typedef struct instruction_s
-{
-	char *opcode;
-	void (*func)(stack_t **, unsigned int);
-} instruction_t;
-
-/**
 * struct code_args_s -  argument information
 * @args: a list of the aguments
 * @argc: number of arguments to passed
@@ -50,9 +37,23 @@ typedef struct instruction_s
 */
 typedef struct code_args_s
 {
-	int args[2];
+	int args;
 	int argc;
-}code_args_t
+}code_args_t;
+
+/**
+ * struct instruction_s - opcode and its function
+ * @opcode: the opcode
+ * @f: function to handle the opcode
+ *
+ * Description: opcode and its respctive function
+ */
+typedef struct instruction_s
+{
+	char *opcode;
+	void (*func)(stack_t **, unsigned int, code_args_t);
+} instruction_t;
+
 
 /*loader*/
 FILE *sopen(char *);
@@ -63,28 +64,29 @@ int arlen(char **);
 void trims(char **, char *);
 void *smalloc(unsigned int);
 void *srealloc(void *, unsigned int);
+char *_strdup(char *);
 
 /*Interpreter funnction*/
-void (*get_op_func(char *))(stack_t **, unsigned int);
+void (*get_op_func(char *))(stack_t **, unsigned int, code_args_t);
 void interpret(char *, int, stack_t **);
 
 /*Interpreter helpers*/
-void push(stack_t **, unsigned int);
-void pall(stack_t **, unsigned int);
-void pint(stack_t **, unsigned int);
-void pop(stack_t **, unsigned int);
-void swap(stack_t **, unsigned int);
-void add(stack_t **, unsigned int);
-void nop(stack_t **, unsigned int);
-void sub(stack_t **, unsigned int);
-void div(stack_t **, unsigned int);
-void mul(stack_t **, unsigned int);
-void mod(stack_t **, unsigned int);
-void comment(stack_t **, unsigned int);
-void pchar(stack_t **, unsigned int);
-void pstr(stack_t **, unsigned int);
-void rotl(stack_t **, unsigned int);
-void rotr(stack_t **, unsigned int);
+void push(stack_t **, unsigned int, code_args_t);
+void pall(stack_t **, unsigned int, code_args_t);
+void pint(stack_t **, unsigned int, code_args_t);
+void pop(stack_t **, unsigned int, code_args_t);
+void swap(stack_t **, unsigned int, code_args_t);
+void add(stack_t **, unsigned int, code_args_t);
+void nop(stack_t **, unsigned int, code_args_t);
+void sub(stack_t **, unsigned int, code_args_t);
+void div_m(stack_t **, unsigned int, code_args_t);
+void mult(stack_t **, unsigned int, code_args_t);
+void mod(stack_t **, unsigned int, code_args_t);
+void comment(stack_t **, unsigned int, code_args_t);
+void pchar(stack_t **, unsigned int, code_args_t);
+void pstr(stack_t **, unsigned int, code_args_t);
+void rotl(stack_t **, unsigned int, code_args_t);
+void rotr(stack_t **, unsigned int, code_args_t);
 
 /*error_utils*/
 void perr_line(char *, int, char *);

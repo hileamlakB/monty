@@ -24,7 +24,7 @@ FILE *sopen(char *name)
 		strcat(path, name);
 	}
 	else
-		path = strdup(name);
+		path = _strdup(name);
 
 	fd = fopen(path, "r");
 	if (!fd)

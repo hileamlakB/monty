@@ -4,12 +4,12 @@
 /**
  * get_op_func -  selects the correct function to
  * perform the operation asked by the commad
- * @s: input string
+ * @command: input string
  * Return: pointer to a function
  */
 void (*get_op_func(char *command))(stack_t **, unsigned int, code_args_t)
 {
-	instruction_s ops[] = {
+	instruction_t ops[] = {
 		{"push", push},
 		{"pall", pall},
 		{"pint", pop},
@@ -17,7 +17,7 @@ void (*get_op_func(char *command))(stack_t **, unsigned int, code_args_t)
 		{"add", add},
 		{"nop", nop},
 		{"sub", sub},
-		{"div", div},
+		{"div", div_m},
 		{"mult", mult},
 		{"mod", mod},
 		{"comment", comment},
@@ -43,15 +43,18 @@ void (*get_op_func(char *command))(stack_t **, unsigned int, code_args_t)
  * interpret - iterprets a singe line code
  * according the rules  specified by the monty
  * language
- * @line - a string holding a command
+ * @line: a string holding a command
+ * @line_number: the line number where the string is found
+ * @head: a double pointer to the stack holding all the
+ * information about the program
  */
 void interpret(char *line, int line_number, stack_t **head)
 {
-	char *cmd = trims(line), *tmp = NULL, *errmsg = NULL, *opcode = NULL;
+	char *cmd = NULL, *tmp = NULL, *opcode = NULL;
 	void (*func)(stack_t **, unsigned int, code_args_t) = NULL;
-	char *num = NULL;
 	code_args_t token;
 
+	trims(&cmd, line);
 	token.argc = 0;
 
 	/*Parse the command name and the arguments into the token*/
@@ -65,8 +68,10 @@ void interpret(char *line, int line_number, stack_t **head)
 		token.argc += 1;
 		tmp = strtok(NULL, " ");
 		if (tmp)
-			token.argc += 1
+			token.argc += 1;
 	}
+	free(cmd);
+
 
 	/*Get the corrspondng fuction to the opcode and callit*/
 	func = get_op_func(opcode);
@@ -75,14 +80,8 @@ void interpret(char *line, int line_number, stack_t **head)
 	else
 	{
 		/*hande the case if no commad is found for the opcode*/
-		errmsg = smalloc(strlen("L: unknown instruction ") + strlen(num) + strlen(opcode) + 4);
-		strcpy(errmsg, "L");
-		strcat(errmsg, num);
-		strcat(errmsg, ": unknown instruction ");
-		strcat(errmsg, token.cmd);
-
-		dprintf(2, "%s\n", errmsg);
-		free(errmsg);
+		/*print an error message*/
+		dprintf(2, "L%i: %s %s\n", line_number, "unknown instruction", opcode);
 		exit(EXIT_FAILURE);
 	}
 }

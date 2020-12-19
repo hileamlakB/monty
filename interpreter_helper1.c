@@ -24,7 +24,6 @@ void push(stack_t **head, unsigned int line_number, code_args_t token)
 }
 
 
-}
 /**
  * pall - prints all value of the stack starting from top to bottom
  * @head: double pointer to top element of the stack

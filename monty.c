@@ -13,8 +13,8 @@ int main(int argc, char **argv)
 	ssize_t read_stat = -1;
 	char *line = NULL;
 	size_t buffsize = 0;
-	int reading = 1, line_numer = 1;
-	stack_s *head = NULL;
+	int reading = 1, line_number = 1;
+	stack_t *head = NULL;
 
 
 	/*check if there is correct argument number*/
@@ -38,11 +38,13 @@ int main(int argc, char **argv)
 			reading = 0;
 			break;
 		}
-		interpret(&head, line, line_number);
+		interpret(line, line_number, &head);
+		line_number += 1;
 	        printf("%s\n",line);
 	}
 
-        free(line);
+        if (line)
+		free(line);
 	/*Close the file before exiting*/
 	fclose(fd);
 	exit(EXIT_SUCCESS);
