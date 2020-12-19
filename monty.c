@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 			reading = 0;
 			break;
 		}
-        printf("%s\n",line);
+	        printf("%s\n",line);
 	}
 
         free(line);

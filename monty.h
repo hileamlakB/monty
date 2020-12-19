@@ -33,13 +33,12 @@ typedef struct stack_s
  * @opcode: the opcode
  * @f: function to handle the opcode
  *
- * Description: opcode and its function
- * for stack, queues, LIFO, FIFO Holberton project
+ * Description: opcode and its respctive function
  */
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	void (*func)(stack_t **, unsigned int);
 } instruction_t;
 
 /*loader*/
@@ -51,4 +50,8 @@ int arlen(char **);
 void trims(char **, char *);
 void *smalloc(unsigned int);
 void *srealloc(void *, unsigned int);
+
+/*Interpreter funnction*/
+void (*get_op_func(char *))(stack_t **, unsigned int)
+
 #endif /*MONTY*/
