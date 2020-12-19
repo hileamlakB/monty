@@ -41,6 +41,19 @@ typedef struct instruction_s
 	void (*func)(stack_t **, unsigned int);
 } instruction_t;
 
+/**
+* struct code_token_s - a command and its argument
+* @cmd: command string
+* @args: a list of the aguments
+* @argc: number of arguments to excpect
+*/
+typedef struct code_token_s
+{
+	char *cmd;
+	int args;
+	int argc;
+}code_token_t
+
 /*loader*/
 FILE *sopen(char *);
 
@@ -52,7 +65,8 @@ void *smalloc(unsigned int);
 void *srealloc(void *, unsigned int);
 
 /*Interpreter funnction*/
-void (*get_op_func(char *))(stack_t **, unsigned int)
+void (*get_op_func(char *))(stack_t **, unsigned int);
+void interpret(char *line);
 
 /*Interpreter helpers*/
 void push(stack_t **head, unsigned int line_number);
