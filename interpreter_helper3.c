@@ -98,6 +98,13 @@ void pstr(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head;
 
+
+	/*Handle incase uncessary arguments are passed*/
+	if (token.argc != 0)
+	{
+		dprintf(2, "L%u: usage: pstr\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	/*
 	*print everything in the linked list unless
 	* it's value is a zero,

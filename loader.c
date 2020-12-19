@@ -10,7 +10,6 @@ FILE *sopen(char *name)
 {
 	char *path = NULL, *currentdir = NULL;
 	FILE *fd;
-	char *errmsg = NULL;
 
 	if (!name || strlen(name) <= 0)
 		return (NULL);
@@ -26,15 +25,10 @@ FILE *sopen(char *name)
 	else
 		path = _strdup(name);
 
-	fd = fopen(path, "r");
+	fr = fopen(path, "r");
 	if (!fd)
 	{
-		errmsg = smalloc(strlen("Error: Can't open file ") + strlen(name) + 4);
-		strcpy(errmsg, "Error: Can't open file ");
-		strcat(errmsg, name);
-		strcat(errmsg, "\n");
-		dprintf(2, "%s", errmsg);
-		free(errmsg);
+		dprintf(2, "Error: Can't open file %s\n", name);
 		free(path);
 		exit(EXIT_FAILURE);
 	}
