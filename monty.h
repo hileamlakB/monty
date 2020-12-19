@@ -82,7 +82,6 @@ void sub(stack_t **, unsigned int, code_args_t);
 void div_m(stack_t **, unsigned int, code_args_t);
 void mult(stack_t **, unsigned int, code_args_t);
 void mod(stack_t **, unsigned int, code_args_t);
-void comment(stack_t **, unsigned int, code_args_t);
 void pchar(stack_t **, unsigned int, code_args_t);
 void pstr(stack_t **, unsigned int, code_args_t);
 void rotl(stack_t **, unsigned int, code_args_t);

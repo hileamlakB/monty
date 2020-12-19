@@ -20,15 +20,20 @@ void (*get_op_func(char *command))(stack_t **, unsigned int, code_args_t)
 		{"div", div_m},
 		{"mult", mult},
 		{"mod", mod},
-		{"comment", comment},
 		{"pchar", pchar},
 		{"pstr", pstr},
 		{"rotl", rotl},
 		{"rotr", rotr},
-		{NULL, NULL}
 	};
 	int i = 0;
 	const int num_of_cmds = 16; /*Number of commands in ops*/
+
+	/*Handle incase the line is comment*/
+	if (command[0] == '#')
+		return (nop);
+	/*Handle the case incase the line is empty*/
+	if (!strcmp(command, "\n"))
+		return (nop);
 
 	while (i < num_of_cmds)
 	{
@@ -36,6 +41,7 @@ void (*get_op_func(char *command))(stack_t **, unsigned int, code_args_t)
 			return (ops[i].func);
 		i++;
 	}
+
 	return (NULL);
 }
 
@@ -59,7 +65,7 @@ void interpret(char *line, int line_number, stack_t **head)
 
 	/*Parse the command name and the arguments into the token*/
 	tmp = strtok(cmd, " ");
-	opcode = tmp;
+	opcode = _strdup(tmp);
 	tmp = strtok(NULL, " ");
 	if (tmp)
 	{
@@ -76,12 +82,16 @@ void interpret(char *line, int line_number, stack_t **head)
 	/*Get the corrspondng fuction to the opcode and callit*/
 	func = get_op_func(opcode);
 	if (func)
+	{
 		func(head, line_number, token);
+		free(opcode);
+	}
 	else
 	{
 		/*hande the case if no commad is found for the opcode*/
 		/*print an error message*/
-		dprintf(2, "L%i: %s %s\n", line_number, "unknown instruction", opcode);
+		dprintf(2, "L%i: unknown instruction %s\n", line_number, opcode);
+		free(opcode);
 		exit(EXIT_FAILURE);
 	}
 }
