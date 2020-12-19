@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 	size_t buffsize = 0;
 	int reading = 1, line_number = 1;
 	stack_t *head = NULL;
-
+	extern char *data_mod;
 
 	/*check if there is correct argument number*/
 	if (argc != 2)
@@ -26,6 +26,9 @@ int main(int argc, char **argv)
 
 	/*safely open the file*/
 	fd = sopen(argv[1]);
+
+	/*Set the default data structure mode to stack*/
+	data_mod = "stack";
 
 	/*Read one line at a time*/
 	/*Check if it is correct*/
@@ -40,10 +43,10 @@ int main(int argc, char **argv)
 		}
 		interpret(line, line_number, &head);
 		line_number += 1;
-	        printf("%s\n",line);
+		printf("%s\n",line);
 	}
 
-        if (line)
+	if (line)
 		free(line);
 	/*Close the file before exiting*/
 	fclose(fd);

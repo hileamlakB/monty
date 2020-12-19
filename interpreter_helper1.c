@@ -8,7 +8,8 @@
  */
 void push(stack_t **head, unsigned int line_number, code_args_t token)
 {
-	stack_t *new_node;
+	stack_t *new_node, *_head = *head;
+	extern char *data_mod;
 
 	if (token.argc != 1)
 	{
@@ -16,13 +17,29 @@ void push(stack_t **head, unsigned int line_number, code_args_t token)
 		exit(EXIT_FAILURE);
 	}
 
+	/*Create a node and give it the required values*/
 	new_node = smalloc(sizeof(stack_t));
-	new_node->n = token.args, new_node->prev = NULL, new_node->next = *head;
-	if (*head)
-		(*head)->prev = new_node;
-	*head = new_node;
-}
+	new_node->n = token.args;
 
+	/*if the data mode is stack store the data in front*/
+	if (!strcmp(data_mode, "stack"))
+	{
+		new_node->prev = NULL;
+		new_node->next = _head;
+		if (_head)
+			_head->prev = new_node;
+		_head = new_node;
+	}
+	else if (!strcmp(data_mod, "queue"))
+	{
+		/*go to the end of the file*/
+		while (_head->next)
+			_head = _head->next;
+		new_node->prev = _head;
+		new_node->next = NULL;
+		_head->next = new_node;
+	}
+}
 
 /**
  * pall - prints all value of the stack starting from top to bottom

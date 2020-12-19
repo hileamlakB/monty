@@ -24,6 +24,8 @@ void (*get_op_func(char *command))(stack_t **, unsigned int, code_args_t)
 		{"pstr", pstr},
 		{"rotl", rotl},
 		{"rotr", rotr},
+		{"queue", queue},
+		{"stack", stack},
 	};
 	int i = 0;
 	const int num_of_cmds = 16; /*Number of commands in ops*/
@@ -90,7 +92,7 @@ void interpret(char *line, int line_number, stack_t **head)
 	{
 		/*hande the case if no commad is found for the opcode*/
 		/*print an error message*/
-		dprintf(2, "L%i: unknown instruction %s\n", line_number, opcode);
+		dprintf(2, "L%u: unknown instruction %s\n", line_number, opcode);
 		free(opcode);
 		exit(EXIT_FAILURE);
 	}
