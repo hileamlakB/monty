@@ -36,6 +36,7 @@ int main(int argc, char **argv)
 			reading = 0;
 			break;
 		}
+		interpret(line);
 	        printf("%s\n",line);
 	}
 
