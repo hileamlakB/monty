@@ -160,7 +160,7 @@ void mult(stack_t **head, unsigned int line_number, code_args_t token)
 	/*check if there are nodes to be multiplied*/
 	if (!_head)
 	{
-		dprintf(2, "L%u: can't mul, stack too short\n", line_number);
+		dprintf(2, "L%u: can't mult, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if (!(_head->next))
