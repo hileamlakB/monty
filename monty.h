@@ -41,7 +41,7 @@ typedef struct stack_s
 */
 typedef struct code_args_s
 {
-	int args;
+	char *args;
 	int argc;
 } code_args_t;
 
@@ -67,6 +67,7 @@ void trims(char **, char *);
 void *smalloc(unsigned int);
 char *_strdup(char *);
 void freedll(stack_t *);
+int isint(char *);
 
 /*Interpreter funnction*/
 void (*get_op_func(char *))(stack_t **, unsigned int, code_args_t);
