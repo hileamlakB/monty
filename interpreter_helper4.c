@@ -13,11 +13,11 @@ void rotr(stack_t **head, unsigned int line_number, code_args_t token)
 
 	(void)(token);
 	(void)(line_number);
-	if(!_head)
+	if (!_head)
 		return;
 
 	/*Go to the end of the list*/
-	while(_head->next)
+	while (_head->next)
 		_head = _head->next;
 
 	/*Store the bottom*/
@@ -43,9 +43,8 @@ void rotr(stack_t **head, unsigned int line_number, code_args_t token)
  */
 void queue(stack_t **head, unsigned int line_number, code_args_t token)
 {
-	extern char data_mod[6];
-
 	strcpy(data_mod, "queue");
+
 	(void)head;
 	(void)line_number;
 	(void)token;
@@ -60,9 +59,8 @@ void queue(stack_t **head, unsigned int line_number, code_args_t token)
  */
 void stack(stack_t **head, unsigned int line_number, code_args_t token)
 {
-	extern char data_mod[6];
-
 	strcpy(data_mod, "stack");
+
 	(void)head;
 	(void)line_number;
 	(void)token;

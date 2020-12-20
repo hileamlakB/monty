@@ -34,10 +34,8 @@ void mod(stack_t **head, unsigned int line_number, code_args_t token)
 		exit(EXIT_FAILURE);
 	}
 
-	/*Find the division of the second node by the first node and store it in the second node*/
 	_head->next->n %= _head->n;
 
-	/*Remove the top node after storing the dividend in the second and move the head*/
 	tmp = _head->next;
 	_head->next->prev = NULL;
 	free(_head);
@@ -90,6 +88,7 @@ void pstr(stack_t **head, unsigned int line_number, code_args_t token)
 	stack_t *_head = *head;
 
 	(void)(token);
+	(void)(line_number);
 	/*
 	*print everything in the linked list unless
 	* it's value is a zero,
@@ -121,13 +120,13 @@ void rotl(stack_t **head, unsigned int line_number, code_args_t token)
 	(void)(token);
 	(void)(line_number);
 
-	if(!_head)
+	if (!_head)
 		return;
 	/*Get the second top element*/
 	second = _head->next;
 
 	/*Go to the end of the list*/
-	while(_head->next)
+	while (_head->next)
 		_head = _head->next;
 
 	/*Bring the top to the last*/

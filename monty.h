@@ -43,12 +43,12 @@ typedef struct code_args_s
 {
 	int args;
 	int argc;
-}code_args_t;
+} code_args_t;
 
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
- * @f: function to handle the opcode
+ * @func: function to handle the opcode
  *
  * Description: opcode and its respctive function
  */

@@ -66,11 +66,7 @@ void interpret(char *line, int line_number, stack_t **head)
 	trims(&cmd, line);
 	token.argc = 0;
 
-	/*
-	 * remove the new line character at the end of cmd
-	 * if its length is more than one otherwise it means it is just a new
-	 * line
-	 */
+	/* remove new line character if its length is more than */
 	if (strlen(cmd) > 1)
 		cmd[strlen(cmd) - 1] = '\0';
 
@@ -89,7 +85,6 @@ void interpret(char *line, int line_number, stack_t **head)
 	}
 	free(cmd);
 
-
 	/*Get the corrspondng fuction to the opcode and callit*/
 	func = get_op_func(opcode);
 	if (func)
@@ -99,8 +94,7 @@ void interpret(char *line, int line_number, stack_t **head)
 	}
 	else
 	{
-		/*hande the case if no commad is found for the opcode*/
-		/*print an error message*/
+		/*print an error in the case where there is no commad  the opcode*/
 		dprintf(2, "L%u: unknown instruction %s\n", line_number, opcode);
 		free(opcode);
 		exit(EXIT_FAILURE);
