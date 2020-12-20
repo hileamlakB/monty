@@ -1,39 +1,44 @@
 #include "monty.h"
 
 /**
- *freedp - frees a double pointer that has been correctly allocated
- *	It is the programers duty to send a valid double pointer
- *@a: double pointer to be freed
+ * _strdup - returns a pointer to a newly allocated space in memory,
+ * which contains a copy of the string given as a parameter.
+ * @str: string to be copied
+ * Return: copied string
  */
-void freedp(char **a)
+char *_strdup(char *str)
 {
-	char **_a = a;
 
-	if (!a)
-		return;
-	while (*_a)
-	{
-		free(*_a);
-		_a++;
-	}
-	free(a);
+	char *copy, *_copy;
+
+	if (!str)
+		return (NULL);
+	copy = smalloc((strlen(str) + 1) * sizeof(char));
+	_copy = copy;
+
+	while (*str)
+		*_copy = *str, str += 1, _copy += 1;
+
+	*_copy = '\0';
+	return (copy);
 }
 
 /**
- *arlen - returns the lenght of a string array
- *@a: pointer to the first string
- *Return: lenght of the array
+ *freedll - frees a doubly linked list
+ *@head: a pointer to the head of the doubly linked list
  */
-int arlen(char **a)
+void freedll(stack_t *head)
 {
-	int i = 0;
+	stack_t *tmp = NULL;
 
-	if (!a)
-		return (i);
-	while (*a)
-		i++, a++;
-	return (i);
+	while (head)
+	{
+		tmp = head->next;
+		free(head);
+		head = tmp;
+	}
 }
+
 /**
  *trims - trims space in front of a string and more than one spaces in between
  *@str: pointer to the string to be edited
@@ -91,32 +96,4 @@ void *smalloc(unsigned int size)
 	}
 	_pointer = (void *)pointer;
 	return (_pointer);
-}
-/**
- *srealloc - rallocates a memory location and returns a pointer
- *(safe realloc)
- *@ptr: pointer to old mem location, must be null terminated
- *@size: new size
- *Return: a generic pointer reallocated memory or -1 on faliure
- */
-void *srealloc(void *ptr, unsigned int size)
-{
-	char *_pointer = (char *)smalloc(size), *_ptr = (char *)ptr;
-	void *pointer = NULL;
-	int i = 0;
-
-	if (!_ptr)
-	{
-		pointer = _pointer;
-		return (pointer);
-	}
-	while (_ptr[i])
-	{
-		_pointer[i] = _ptr[i];
-		i += 1;
-	}
-	_pointer[i] = '\0';
-	pointer = (void *)_pointer;
-	free(ptr);
-	return (pointer);
 }

@@ -40,7 +40,7 @@ void (*get_op_func(char *command))(stack_t **, unsigned int, code_args_t)
 
 	while (i < num_of_cmds)
 	{
-		if (!strcmp(ops[i].opcode, command))
+		if (strcmp(ops[i].opcode, command) == 0)
 			return (ops[i].func);
 		i++;
 	}
@@ -69,7 +69,6 @@ void interpret(char *line, int line_number, stack_t **head)
 	/* remove new line character if its length is more than */
 	if (strlen(cmd) > 1)
 		cmd[strlen(cmd) - 1] = '\0';
-
 	/*Parse the command name and the arguments into the token*/
 	tmp = strtok(cmd, " ");
 	opcode = _strdup(tmp);
@@ -100,5 +99,3 @@ void interpret(char *line, int line_number, stack_t **head)
 		exit(EXIT_FAILURE);
 	}
 }
-
-

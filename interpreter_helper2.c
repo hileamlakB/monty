@@ -25,7 +25,7 @@ void add(stack_t **head, unsigned int line_number, code_args_t token)
 		exit(EXIT_FAILURE);
 	}
 
-	/*add the nodes and store the sum in the top node*/
+	/*add the nodes and store the sum in the second node*/
 	_head->next->n += _head->n;
 
 	/*Remove the top node after storign the sum in the second and move the head*/
@@ -78,6 +78,10 @@ void sub(stack_t **head, unsigned int line_number, code_args_t token)
 
 	_head->next->n -= _head->n;
 
+	/*
+	*Remove the top node after storing the difference in the second
+	*and move the head
+	*/
 	tmp = _head->next;
 	_head->next->prev = NULL;
 	free(_head);
@@ -122,6 +126,16 @@ void div_m(stack_t **head, unsigned int line_number, code_args_t token)
 
 	_head->next->n /= _head->n;
 
+	/*
+	*Find the division of the second node by the first node
+	*and store it in the second node
+	*/
+	_head->next->n /= _head->n;
+
+	/*
+	*Remove the top node after storing the dividend
+	*in the second and move the head
+	*/
 	tmp = _head->next;
 	_head->next->prev = NULL;
 	free(_head);
@@ -158,6 +172,10 @@ void mult(stack_t **head, unsigned int line_number, code_args_t token)
 
 	_head->next->n *= _head->n;
 
+	/*
+	*Remove the top node after storing the difference
+	*in the second and move the head
+	*/
 	tmp = _head->next;
 	_head->next->prev = NULL;
 	free(_head);

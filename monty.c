@@ -29,6 +29,7 @@ int main(int argc, char **argv)
 	strcpy(data_mod, "stack");
 
 	/*Check if the line is correct and excute*/
+	/*Execute command line by line*/
 	while (reading)
 	{
 		read_stat = getline(&line, &buffsize, fd);
