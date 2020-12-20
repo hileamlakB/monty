@@ -75,8 +75,7 @@ void interpret(char *line, int line_number, stack_t **head)
 	tmp = strtok(NULL, " ");
 	if (tmp)
 	{
-		/*handle the case where tmp isn't a number*/
-		token.args = atoi(tmp);
+		token.args = tmp;
 		token.argc += 1;
 		tmp = strtok(NULL, " ");
 		if (tmp)

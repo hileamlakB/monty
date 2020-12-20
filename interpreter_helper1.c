@@ -10,7 +10,7 @@ void push(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *new_node, *_head = *head;
 
-	if (token.argc != 1)
+	if (token.argc != 1 || !isint(token.args))
 	{
 		dprintf(2, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -18,7 +18,7 @@ void push(stack_t **head, unsigned int line_number, code_args_t token)
 
 	/*Create a node and give it the required values*/
 	new_node = smalloc(sizeof(stack_t));
-	new_node->n = token.args;
+	new_node->n = atoi(token.args);
 
 	/*if the data mode is stack store the data in front*/
 	if (!strcmp(data_mod, "stack"))
