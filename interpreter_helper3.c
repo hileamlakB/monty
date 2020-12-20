@@ -36,6 +36,16 @@ void mod(stack_t **head, unsigned int line_number, code_args_t token)
 
 	_head->next->n %= _head->n;
 
+	/*
+	*Find the division of the second node by the
+	*first node and store it in the second node
+	*/
+	_head->next->n %= _head->n;
+
+	/*
+	*Remove the top node after storing the
+	*dividend in the second and move the head
+	*/
 	tmp = _head->next;
 	_head->next->prev = NULL;
 	free(_head);
