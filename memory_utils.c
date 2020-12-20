@@ -1,40 +1,6 @@
 #include "monty.h"
 
 /**
- *freedp - frees a double pointer that has been correctly allocated
- *	It is the programers duty to send a valid double pointer
- *@a: double pointer to be freed
- */
-void freedp(char **a)
-{
-	char **_a = a;
-
-	if (!a)
-		return;
-	while (*_a)
-	{
-		free(*_a);
-		_a++;
-	}
-	free(a);
-}
-
-/**
- *arlen - returns the lenght of a string array
- *@a: pointer to the first string
- *Return: lenght of the array
- */
-int arlen(char **a)
-{
-	int i = 0;
-
-	if (!a)
-		return (i);
-	while (*a)
-		i++, a++;
-	return (i);
-}
-/**
  *trims - trims space in front of a string and more than one spaces in between
  *@str: pointer to the string to be edited
  *@strt: string to be trimed
@@ -91,32 +57,4 @@ void *smalloc(unsigned int size)
 	}
 	_pointer = (void *)pointer;
 	return (_pointer);
-}
-/**
- *srealloc - rallocates a memory location and returns a pointer
- *(safe realloc)
- *@ptr: pointer to old mem location, must be null terminated
- *@size: new size
- *Return: a generic pointer reallocated memory or -1 on faliure
- */
-void *srealloc(void *ptr, unsigned int size)
-{
-	char *_pointer = (char *)smalloc(size), *_ptr = (char *)ptr;
-	void *pointer = NULL;
-	int i = 0;
-
-	if (!_ptr)
-	{
-		pointer = _pointer;
-		return (pointer);
-	}
-	while (_ptr[i])
-	{
-		_pointer[i] = _ptr[i];
-		i += 1;
-	}
-	_pointer[i] = '\0';
-	pointer = (void *)_pointer;
-	free(ptr);
-	return (pointer);
 }
