@@ -9,7 +9,6 @@
 void push(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *new_node, *_head = *head;
-	extern char data_mod[6];
 
 	if (token.argc != 1)
 	{
@@ -117,13 +116,20 @@ void pop(stack_t **head, unsigned int line_number, code_args_t token)
 void swap(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	int temp;
-	(void)token;
 
-	if (*head == NULL || !(*head)->next)
+(void)token;
+
+	if (*head == NULL)
 	{
 		dprintf(2, "L%u: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	if ((*head)->next == NULL)
+	{
+		dprintf(2, "L%u: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
 	temp = (*head)->n;
 	(*head)->n = (*head)->next->n;
 	(*head)->next->n = temp;
