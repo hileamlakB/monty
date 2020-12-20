@@ -5,7 +5,7 @@
  * @argc: argument count
  * @argv: argument list
  * Return: 0 on success, and error messages as specified
- in error.h
+ *in error.h
  */
 int main(int argc, char **argv)
 {
@@ -15,7 +15,6 @@ int main(int argc, char **argv)
 	size_t buffsize = 0;
 	int reading = 1, line_number = 1;
 	stack_t *head = NULL;
-	extern char data_mod[6];
 
 	/*check if there is correct argument number*/
 	if (argc != 2)
@@ -29,10 +28,7 @@ int main(int argc, char **argv)
 
 	/*Set the default data structure mode to stack*/
 	strcpy(data_mod, "stack");
-
-	/*Read one line at a time*/
-	/*Check if it is correct*/
-	/*Execute that line*/
+	/*Execute command line by line*/
 	while (reading)
 	{
 		read_stat = getline(&line, &buffsize, fd);
