@@ -14,7 +14,8 @@
 
 /*global variables*/
 char data_mod[6];
-
+FILE *fd;
+char *line;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)

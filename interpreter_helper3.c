@@ -10,9 +10,7 @@ void mod(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *tmp = NULL;
 
-
-	(void)(token);
-
+	free(token.args);
 	/*check if there are nodes to be divided*/
 	if (!_head)
 	{
@@ -33,15 +31,12 @@ void mod(stack_t **head, unsigned int line_number, code_args_t token)
 		dprintf(2, "L%u: division by zero\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
 	_head->next->n %= _head->n;
-
 	/*
 	*Find the division of the second node by the
 	*first node and store it in the second node
 	*/
 	_head->next->n %= _head->n;
-
 	/*
 	*Remove the top node after storing the
 	*dividend in the second and move the head
@@ -65,8 +60,7 @@ void pchar(stack_t **head, unsigned int line_number, code_args_t token)
 
 	stack_t *_head = *head;
 
-	(void)(token);
-
+	free(token.args);
 	/*Incase there is no node to be printed*/
 	if (!_head)
 	{
@@ -74,7 +68,6 @@ void pchar(stack_t **head, unsigned int line_number, code_args_t token)
 		exit(EXIT_FAILURE);
 
 	}
-
 	/*handle if isn't a non printable character*/
 	if (_head->n < 0 || _head->n > 127)
 	{
@@ -97,7 +90,7 @@ void pstr(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head;
 
-	(void)(token);
+	free(token.args);
 	(void)(line_number);
 	/*
 	*print everything in the linked list unless

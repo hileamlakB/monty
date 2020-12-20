@@ -1,5 +1,20 @@
 #include "monty.h"
 
+
+/**
+ * closefile - closes the file during exits
+ */
+void closefile(void)
+{
+	fclose(fd);
+}
+/**
+ * freeline - frees the line
+ */
+void freeline(void)
+{
+	free(line);
+}
 /**
  * main - entry point of the intepreter
  * @argc: argument count
@@ -9,13 +24,15 @@
  */
 int main(int argc, char **argv)
 {
-	FILE *fd = NULL;
 	ssize_t read_stat = -1;
-	char *line = NULL;
 	size_t buffsize = 0;
 	int reading = 1, line_number = 1;
 	stack_t *head = NULL;
 
+	atexit(closefile);
+	atexit(freeline);
+	fd = NULL;
+	line = NULL;
 	/*check if there is correct argument number*/
 	if (argc != 2)
 	{
@@ -41,11 +58,8 @@ int main(int argc, char **argv)
 		interpret(line, line_number, &head);
 		line_number += 1;
 	}
-	if (line)
-		free(line);
 	if (head)
 		freedll(head);
 	/*Close the file before exiting*/
-	fclose(fd);
 	exit(EXIT_SUCCESS);
 }

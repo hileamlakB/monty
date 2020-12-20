@@ -85,8 +85,8 @@ void interpret(char *line, int line_number, stack_t **head)
 	func = get_op_func(opcode);
 	if (func)
 	{
-		func(head, line_number, token);
 		free(opcode);
+		func(head, line_number, token);
 		if (token.args)
 			free(token.args);
 	}
