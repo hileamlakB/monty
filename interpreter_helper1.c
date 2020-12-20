@@ -78,7 +78,8 @@ void pall(stack_t **head, unsigned int line_number, code_args_t token)
  */
 void pint(stack_t **head, unsigned int line_number, code_args_t token)
 {
-	free(token.args);
+	if (token.args)
+		free(token.args);
 
 	if (*head == NULL)
 	{
@@ -99,7 +100,8 @@ void pop(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *temp = NULL;
 
-	free(token.args);
+	if (token.args)
+		free(token.args);
 	if (*head == NULL)
 	{
 		dprintf(2, "L%u: can't pop an empty stack\n", line_number);
@@ -121,7 +123,8 @@ void swap(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	int temp;
 
-	free(token.args);
+	if (token.args)
+		free(token.args);
 	if (*head == NULL)
 	{
 		dprintf(2, "L%u: can't swap, stack too short\n", line_number);

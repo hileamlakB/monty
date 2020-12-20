@@ -10,7 +10,8 @@ void add(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *tmp = NULL;
 
-	free(token.args);
+	if (token.args)
+		free(token.args);
 
 	/*check if there are nodes to be added*/
 	if (!_head)
@@ -46,7 +47,8 @@ void nop(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	(void)head;
 	(void)line_number;
-	free(token.args);
+	if (token.args)
+		free(token.args);
 }
 
 
@@ -60,7 +62,8 @@ void sub(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *tmp = NULL;
 
-	free(token.args);
+	if (token.args)
+		free(token.args);
 	/*check if there are nodes to be substracted*/
 	if (!_head)
 	{
@@ -95,7 +98,8 @@ void div_m(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *tmp = NULL;
 
-	free(token.args);
+	if (token.args)
+		free(token.args);
 	/*check if there are nodes to be divided*/
 	if (!_head)
 	{
@@ -115,12 +119,11 @@ void div_m(stack_t **head, unsigned int line_number, code_args_t token)
 		dprintf(2, "L%u: division by zero\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	_head->next->n /= _head->n;
 	/*
 	*Find the division of the second node by the first node
 	*and store it in the second node
 	*/
-	_head->next->n /= _head->n;
+	_head->next->n = _head->next->n / _head->n;
 	/*
 	*Remove the top node after storing the dividend
 	*in the second and move the head
@@ -143,7 +146,8 @@ void mult(stack_t **head, unsigned int line_number, code_args_t token)
 
 	stack_t *_head = *head, *tmp = NULL;
 
-	free(token.args);
+	if (token.args)
+		free(token.args);
 	/*check if there are nodes to be multiplied*/
 	if (!_head)
 	{
@@ -156,7 +160,7 @@ void mult(stack_t **head, unsigned int line_number, code_args_t token)
 		dprintf(2, "L%u: can't mul, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	_head->next->n *= _head->n;
+	_head->next->n = _head->next->n * _head->n;
 	/*
 	*Remove the top node after storing the difference
 	*in the second and move the head

@@ -10,7 +10,8 @@ void rotr(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *bottom = NULL;
 
-	free(token.args);
+	if (token.args)
+		free(token.args);
 	(void)(line_number);
 	if (!_head)
 		return;
@@ -46,7 +47,8 @@ void queue(stack_t **head, unsigned int line_number, code_args_t token)
 
 	(void)head;
 	(void)line_number;
-	free(token.args);
+	if (token.args)
+		free(token.args);
 }
 
 /**
@@ -62,5 +64,6 @@ void stack(stack_t **head, unsigned int line_number, code_args_t token)
 
 	(void)head;
 	(void)line_number;
-	free(token.args);
+	if (token.args)
+		free(token.args);
 }
