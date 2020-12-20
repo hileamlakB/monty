@@ -117,7 +117,7 @@ void swap(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	int temp;
 
-(void)token;
+	(void)token;
 
 	if (*head == NULL)
 	{
