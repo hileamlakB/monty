@@ -89,7 +89,7 @@ void pstr(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head;
 
-	(voiod)(token);
+	(void)(token);
 	(void)(line_number);
 	/*
 	*print everything in the linked list unless
