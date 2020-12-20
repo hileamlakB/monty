@@ -10,7 +10,7 @@ void mod(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *tmp = NULL;
 
-	free(token.args);
+	(void)(token);
 	/*check if there are nodes to be divided*/
 	if (!_head)
 	{
@@ -23,7 +23,6 @@ void mod(stack_t **head, unsigned int line_number, code_args_t token)
 		dprintf(2, "L%u: can't mod, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
 	/*Handle division by zero*/
 	if (_head->n == 0)
 	{
@@ -60,7 +59,7 @@ void pchar(stack_t **head, unsigned int line_number, code_args_t token)
 
 	stack_t *_head = *head;
 
-	free(token.args);
+	(void)(token);
 	/*Incase there is no node to be printed*/
 	if (!_head)
 	{
@@ -90,7 +89,7 @@ void pstr(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head;
 
-	free(token.args);
+	(voiod)(token);
 	(void)(line_number);
 	/*
 	*print everything in the linked list unless
