@@ -12,8 +12,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-/*global variables*/
-char data_mod[6];
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -31,13 +29,31 @@ typedef struct stack_s
 } stack_t;
 
 /**
-* struct code_args_s -  argument information
-* @args: a list of the aguments
-* @argc: number of arguments to passed
-* 0 - means none,
-* 1 - means 1,
-* 2 - more than one
+*struct globals - global variable to hold all global variables
+*@data_mod: the data mode
+*@line: the line of command
+*@fd: file discriptor
+*@head: head of stack
 */
+typedef struct globals
+{
+	char data_mod[6];
+	char *line;
+	FILE *fd;
+	stack_t *head;
+} globals;
+
+/*global variables*/
+globals global_vars;
+
+/**
+ * struct code_args_s -  argument information
+ * @args: a list of the aguments
+ * @argc: number of arguments to passed
+ * 0 - means none,
+ * 1 - means 1,
+ * 2 - more than one
+ */
 typedef struct code_args_s
 {
 	char *args;

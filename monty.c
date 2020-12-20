@@ -1,5 +1,18 @@
 #include "monty.h"
 
+/**
+ * clean_up - Clean up during exit
+ */
+void clean_up(void)
+{
+	if (global_vars.line)
+		free(global_vars.line);
+	if (global_vars.head)
+		freedll(global_vars.head);
+	/*Close the file before exiting*/
+	if (global_vars.fd)
+		fclose(global_vars.fd);
+}
 
 /**
  * main - entry point of the intepreter
@@ -13,9 +26,11 @@ int main(int argc, char **argv)
 	ssize_t read_stat = -1;
 	size_t buffsize = 0;
 	int reading = 1, line_number = 1;
-	stack_t *head = NULL;
-	FILE *fd = NULL;
-	char *line = NULL;
+
+	global_vars.fd = NULL;
+	global_vars.line = NULL;
+	global_vars.head = NULL;
+	atexit(clean_up);
 
 	/*check if there is correct argument number*/
 	if (argc != 2)
@@ -25,25 +40,22 @@ int main(int argc, char **argv)
 	}
 
 	/*safely open the file*/
-	fd = sopen(argv[1]);
+	global_vars.fd = sopen(argv[1]);
 	/*Set the default data structure mode to stack*/
-	strcpy(data_mod, "stack");
+	strcpy(global_vars.data_mod, "stack");
 
 	/*Check if the line is correct and excute*/
 	/*Execute command line by line*/
 	while (reading)
 	{
-		read_stat = getline(&line, &buffsize, fd);
+		read_stat = getline(&global_vars.line, &buffsize, global_vars.fd);
 		if (read_stat == -1)
 		{
 			reading = 0;
 			break;
 		}
-		interpret(line, line_number, &head);
+		interpret(global_vars.line, line_number, &global_vars.head);
 		line_number += 1;
 	}
-	if (head)
-		freedll(head);
-	/*Close the file before exiting*/
 	exit(EXIT_SUCCESS);
 }

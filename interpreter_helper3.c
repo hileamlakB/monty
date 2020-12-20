@@ -10,7 +10,7 @@ void mod(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *tmp = NULL;
 
-	(void)(token);
+	free(token.args);
 	/*check if there are nodes to be divided*/
 	if (!_head)
 	{
@@ -59,7 +59,7 @@ void pchar(stack_t **head, unsigned int line_number, code_args_t token)
 
 	stack_t *_head = *head;
 
-	(void)(token);
+	free(token.args);
 	/*Incase there is no node to be printed*/
 	if (!_head)
 	{
@@ -89,7 +89,7 @@ void pstr(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head;
 
-	(void)(token);
+	free(token.args);
 	(void)(line_number);
 	/*
 	*print everything in the linked list unless
@@ -119,7 +119,7 @@ void rotl(stack_t **head, unsigned int line_number, code_args_t token)
 {
 	stack_t *_head = *head, *top = *head, *second = NULL;
 
-	(void)(token);
+	free(token.args);
 	(void)(line_number);
 
 	if (!_head)
@@ -137,6 +137,10 @@ void rotl(stack_t **head, unsigned int line_number, code_args_t token)
 	top->prev = _head;
 	/*set the previous of the second to NULL since it is now top*/
 	second->prev = NULL;
+
+	/*detach the top form its old position*/
+	top->next = NULL;
+
 	/*Make the head point to second*/
 	*head = second;
 }
