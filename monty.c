@@ -2,20 +2,6 @@
 
 
 /**
- * closefile - closes the file during exits
- */
-void closefile(void)
-{
-	fclose(fd);
-}
-/**
- * freeline - frees the line
- */
-void freeline(void)
-{
-	free(line);
-}
-/**
  * main - entry point of the intepreter
  * @argc: argument count
  * @argv: argument list
@@ -28,11 +14,9 @@ int main(int argc, char **argv)
 	size_t buffsize = 0;
 	int reading = 1, line_number = 1;
 	stack_t *head = NULL;
+	FILE *fd = NULL;
+	char *line = NULL;
 
-	atexit(closefile);
-	atexit(freeline);
-	fd = NULL;
-	line = NULL;
 	/*check if there is correct argument number*/
 	if (argc != 2)
 	{
