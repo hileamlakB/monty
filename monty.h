@@ -1,7 +1,7 @@
 #ifndef MONTY
 #define MONTY
 
-/*Liberaries*/
+/*Libraries*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,14 +43,14 @@ typedef struct code_args_s
 {
 	int args;
 	int argc;
-}code_args_t;
+} code_args_t;
 
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
- * @f: function to handle the opcode
+ * @func: function to handle the opcode
  *
- * Description: opcode and its respctive function
+ * Description: opcode and its respective function
  */
 typedef struct instruction_s
 {
@@ -63,13 +63,8 @@ typedef struct instruction_s
 FILE *sopen(char *);
 
 /*memory_utils*/
-void freedp(char **);
-int arlen(char **);
 void trims(char **, char *);
 void *smalloc(unsigned int);
-void *srealloc(void *, unsigned int);
-
-/*memory_utils2*/
 char *_strdup(char *);
 void freedll(stack_t *);
 
