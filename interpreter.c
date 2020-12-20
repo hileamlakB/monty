@@ -40,7 +40,7 @@ void (*get_op_func(char *command))(stack_t **, unsigned int, code_args_t)
 
 	while (i < num_of_cmds)
 	{
-		if (!strcmp(ops[i].opcode, command))
+		if (strcmp(ops[i].opcode, command) == 0)
 			return (ops[i].func);
 		i++;
 	}
@@ -66,14 +66,9 @@ void interpret(char *line, int line_number, stack_t **head)
 	trims(&cmd, line);
 	token.argc = 0;
 
-	/*
-	 * remove the new line character at the end of cmd
-	 * if its length is more than one otherwise it means it is just a new
-	 * line
-	 */
+	/*remove the new line character at the end of cmd*/
 	if (strlen(cmd) > 1)
 		cmd[strlen(cmd) - 1] = '\0';
-
 	/*Parse the command name and the arguments into the token*/
 	tmp = strtok(cmd, " ");
 	opcode = _strdup(tmp);
@@ -89,7 +84,6 @@ void interpret(char *line, int line_number, stack_t **head)
 	}
 	free(cmd);
 
-
 	/*Get the corrspondng fuction to the opcode and callit*/
 	func = get_op_func(opcode);
 	if (func)
@@ -99,12 +93,8 @@ void interpret(char *line, int line_number, stack_t **head)
 	}
 	else
 	{
-		/*hande the case if no commad is found for the opcode*/
-		/*print an error message*/
 		dprintf(2, "L%u: unknown instruction %s\n", line_number, opcode);
 		free(opcode);
 		exit(EXIT_FAILURE);
 	}
 }
-
-
