@@ -19,7 +19,7 @@ void (*get_op_func(char *command))(stack_t **, unsigned int, code_args_t)
 		{"nop", nop},
 		{"sub", sub},
 		{"div", div_m},
-		{"mult", mult},
+		{"mul", mult},
 		{"mod", mod},
 		{"pchar", pchar},
 		{"pstr", pstr},
