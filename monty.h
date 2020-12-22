@@ -44,7 +44,7 @@ typedef struct globals
 } globals;
 
 /*global variables*/
-globals global_vars;
+extern globals global_vars;
 
 /**
  * struct code_args_s -  argument information

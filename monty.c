@@ -1,5 +1,7 @@
 #include "monty.h"
 
+globals global_vars = {{'\0', '\0', '\0', '\0', '\0', '\0'}, NULL, NULL, NULL};
+
 /**
  * clean_up - Clean up during exit
  */
@@ -27,9 +29,6 @@ int main(int argc, char **argv)
 	size_t buffsize = 0;
 	int reading = 1, line_number = 1;
 
-	global_vars.fd = NULL;
-	global_vars.line = NULL;
-	global_vars.head = NULL;
 	atexit(clean_up);
 
 	/*check if there is correct argument number*/
@@ -44,8 +43,7 @@ int main(int argc, char **argv)
 	/*Set the default data structure mode to stack*/
 	strcpy(global_vars.data_mod, "stack");
 
-	/*Check if the line is correct and excute*/
-	/*Execute command line by line*/
+	/* Check if the command per line is correct and excute*/
 	while (reading)
 	{
 		read_stat = getline(&global_vars.line, &buffsize, global_vars.fd);
