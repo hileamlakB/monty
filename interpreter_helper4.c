@@ -15,6 +15,8 @@ void rotr(stack_t **head, unsigned int line_number, code_args_t token)
 	(void)(line_number);
 	if (!_head)
 		return;
+	if (!(_head->next))
+		return;
 
 	/*Go to the end of the list*/
 	while (_head->next)

@@ -127,6 +127,8 @@ void rotl(stack_t **head, unsigned int line_number, code_args_t token)
 
 	if (!_head)
 		return;
+	if (!(_head->next))
+		return;
 	/*Get the second top element*/
 	second = _head->next;
 
