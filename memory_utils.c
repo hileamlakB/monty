@@ -107,7 +107,7 @@ int isint(char *intstring)
 {
 	while (*intstring)
 	{
-		if (*intstring > '9' || *intstring < '0' && *intstring != '-')
+		if ((*intstring > '9' || *intstring < '0') && *intstring != '-')
 			return (0);
 		intstring += 1;
 	}
